@@ -31,4 +31,4 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: false
-        tags: ${{ github.event.repository.name }}:latest,article:latest
+        tags: ${{ github.event.repository.name }}:latest, ${{ github.repository }}:latest
