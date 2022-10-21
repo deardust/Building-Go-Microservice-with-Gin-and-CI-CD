@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  app:
+    image: golang
+    working_dir:
+      "/app"
+    volumes:
+      - ./:/app 
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: test
+      
+    command:
+      - sh
+      - -c
+      - |
+          go mod download && go mod verify
+          go build -o app
+          ./app
+
+  db:
+    image: mysql
+    volumes:
+      - mysqldata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: test
+
+volumes:
+  mysqldata:
