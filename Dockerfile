@@ -1,7 +1,7 @@
 FROM golang
 
 WORKDIR /app
-# 2
+# 0.0.1
 # Download Go modules
 COPY go.mod .
 COPY go.sum .
